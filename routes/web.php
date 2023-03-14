@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\IndexController;
 use App\Http\Middleware\AdminMiddleware;
 use App\Models\User;
@@ -66,3 +67,11 @@ Route::controller(ArticleController::class)->prefix('/articles')->as('article.')
 
    Route::get('/{article:id}', 'single')->name('single');
 });
+
+Route::controller(CommentController::class)
+    ->prefix('/comments')
+    ->as('comment.')
+    ->middleware('auth')
+    ->group(function () {
+       Route::post('/create', 'store')->name('store');
+    });

@@ -62,7 +62,7 @@
     <article class="post">
         <header>
             <div class="title">
-                <h2><a href="single.html">{{ $article->title }}</a></h2>
+                <h2><a href="{{ route('article.single', $article) }}">{{ $article->title }}</a></h2>
                 <p>{{ $article->short_text }}</p>
             </div>
             <div class="meta">
@@ -84,17 +84,13 @@
     </article>
     @endforeach
 
+        {{ $articles->links('components.paginate') }}
+
     @else
 
         <h2>На данный момент постов нет!</h2>
 
     @endif
-
-    <!-- Pagination -->
-    <ul class="actions pagination">
-        <li><a href="" class="disabled button large previous">Previous Page</a></li>
-        <li><a href="#" class="button large next">Next Page</a></li>
-    </ul>
 
 </div>
 
